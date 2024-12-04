@@ -1,0 +1,13 @@
+<div
+  class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-lg w-96 p-6">
+    <h2 class="text-blue-600">{{ mode }}</h2>
+    <button
+      class="mt-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+      (click)="close.emit()"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>
