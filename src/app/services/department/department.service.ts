@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DepartmentService {
-  private readonly apiUrl = `${environment.apiUrl}/department/`;
+  private readonly apiUrl = 'http://localhost:3000/departments/';
   private http = inject(HttpClient);
 
   getDepartments(): Observable<Department[]> {
@@ -17,5 +17,27 @@ export class DepartmentService {
 
   getDepartmentById(codeDepartment: number): Observable<Department> {
     return this.http.get<Department>(`${this.apiUrl}${codeDepartment}`);
+  }
+
+  createDepartment(department: Department): Observable<Department> {
+    return this.http.post<Department>(this.apiUrl, department);
+  }
+
+  updateDepartment(
+    codeDepartment: number,
+    department: Partial<Department>
+  ): Observable<Department> {
+    return this.http.patch<Department>(
+      `${this.apiUrl}${codeDepartment}`,
+      department
+    );
+  }
+
+  deleteDepartment(
+    codeDepartment: number
+  ): Observable<{ message: string; department: Department }> {
+    return this.http.delete<{ message: string; department: Department }>(
+      `${this.apiUrl}${codeDepartment}`
+    );
   }
 }

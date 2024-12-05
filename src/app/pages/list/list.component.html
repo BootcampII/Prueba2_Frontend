@@ -1,8 +1,49 @@
-<h1 class="text-2xl font-bold text-blue-600">List</h1>
+<div>
+  <h1 class="text-2xl font-bold text-blue-600">List</h1>
 
-<button (click)="openModal(ModalTypes.DEPARTMENT)">Crear Departamento</button>
+  <div class="mb-4">
+    <label
+      for="viewSelect"
+      class="block mb-2 text-sm font-medium text-gray-900"
+    >
+      Select View
+    </label>
+    <select
+      id="viewSelect"
+      [(ngModel)]="view"
+      class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+    >
+      <option value="departments">Departamentos</option>
+      <option value="employees">Empleados</option>
+    </select>
+  </div>
 
-<button (click)="openModal(ModalTypes.EMPLOYEE)">Crear Empleado</button>
+  <div class="mb-4 flex space-x-4">
+    <button (click)="openModal(ModalTypes.DEPARTMENT)">
+      Crear Departamento
+    </button>
 
-<app-modal *ngIf="modalIsOpen" [mode]="modalMode" (close)="closeModal()">
-</app-modal>
+    <button (click)="openModal(ModalTypes.EMPLOYEE)">Crear Empleado</button>
+  </div>
+
+  <div>
+    <app-department *ngIf="view === 'departments'"></app-department>
+    <div *ngIf="view === 'employees'" class="bg- white">
+      <h2 class="text-lg text-green">Employees</h2>
+      <ul class="divide-y divide-gray-200">
+        <li
+          *ngFor="let employee of employees"
+          class="py-4 px-4 sm:px-6 hover:bg-gray-100 cursor-pointer"
+        >
+          <span class="font-medium text-gray-800">{{ employee.id }}</span>
+          <span class="text-gray-600"
+            >{{ employee.name }} - {{ employee.position }}</span
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <app-modal *ngIf="modalIsOpen" [mode]="modalMode" (close)="closeModal()">
+  </app-modal>
+</div>
