@@ -8,15 +8,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DepartmentService {
-  private readonly apiUrl = 'http://localhost:3000/departments/';
+  private readonly apiUrl = 'http://localhost:3000/department/';
   private http = inject(HttpClient);
 
   getDepartments(): Observable<Department[]> {
-    return this.http.get<Department[]>(this.apiUrl);
+    return this.http.get<Department[]>(`${this.apiUrl}/getDepartments`);
   }
 
   getDepartmentById(codeDepartment: number): Observable<Department> {
-    return this.http.get<Department>(`${this.apiUrl}${codeDepartment}`);
+    return this.http.get<Department>(
+      `${this.apiUrl}getDepartmentById/${codeDepartment}`
+    );
   }
 
   createDepartment(department: Department): Observable<Department> {
@@ -28,7 +30,7 @@ export class DepartmentService {
     department: Partial<Department>
   ): Observable<Department> {
     return this.http.patch<Department>(
-      `${this.apiUrl}${codeDepartment}`,
+      `${this.apiUrl}updateDepartment/${codeDepartment}`,
       department
     );
   }
@@ -37,7 +39,7 @@ export class DepartmentService {
     codeDepartment: number
   ): Observable<{ message: string; department: Department }> {
     return this.http.delete<{ message: string; department: Department }>(
-      `${this.apiUrl}${codeDepartment}`
+      `${this.apiUrl}deleteDepartment/${codeDepartment}`
     );
   }
 }
