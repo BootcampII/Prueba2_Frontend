@@ -4,17 +4,27 @@
     *ngIf="departments.length; else noDepartments"
     class="bg-white shadow-md rounded-lg"
   >
-    <ul class="divide-y divide-gray-200">
-      <li
-        *ngFor="let department of departments"
-        class="px-4 py-3 flex justify-between items-center hover:bg-gray-50 transition"
-      >
-        <span class="font-medium text-gray-800">{{
-          department.codeDepartment
-        }}</span>
-        <span class="text-gray-600">{{ department.nameDepartment }}</span>
-      </li>
-    </ul>
+    <table class="min-w-full table-auto">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-gray-700 font-medium">ID</th>
+          <th class="px-4 py-2 text-right text-gray-700 font-medium">
+            nameDepartment
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <li
+          *ngFor="let department of departments"
+          class="px-4 py-3 flex justify-between items-center hover:bg-gray-50 transition"
+        >
+          <span class="font-medium text-gray-800">{{
+            department.codeDepartment
+          }}</span>
+          <span class="text-gray-600">{{ department.nameDepartment }}</span>
+        </li>
+      </tbody>
+    </table>
   </div>
   <ng-template #noDepartments>
     <p class="text-white italic">There are no departments.</p>

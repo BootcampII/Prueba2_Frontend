@@ -2,24 +2,39 @@
   <h2 class="text-2xl font-bold mb-4 text-white">Employees</h2>
   <div
     *ngIf="employees.length; else noEmployees"
-    class="bg-white shadow-md rounded-lg"
+    class="bg-white shadow-md rounded-lg overflow-hidden"
   >
-    <ul class="divide-y divide-gray-200">
-      <li
-        *ngFor="let employee of employees"
-        class="px-4 py-3 flex justify-between items-center hover:bg-gray-50 transition"
-      >
-        <span class="font-medium text-gray-800">{{
-          employee.codeEmployee
-        }}</span>
-        <span class="text-gray-600">{{ employee.name }}</span>
-        <span class="text-gray-600">{{ employee.lastName1 }}</span>
-        <span class="text-gray-600">{{ employee.lastName2 }}</span>
-        <span class="text-gray-600">{{
-          employee.codeDepartment.nameDepartment
-        }}</span>
-      </li>
-    </ul>
+    <table class="min-w-full table-auto">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left text-gray-700 font-medium">ID</th>
+          <th class="px-4 py-2 text-left text-gray-700 font-medium">Name</th>
+          <th class="px-4 py-2 text-left text-gray-700 font-medium">
+            Last Name 1
+          </th>
+          <th class="px-4 py-2 text-left text-gray-700 font-medium">
+            Last Name 2
+          </th>
+          <th class="px-4 py-2 text-left text-gray-700 font-medium">
+            Department
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let employee of employees"
+          class="border-b hover:bg-gray-50 transition"
+        >
+          <td class="px-4 py-2 text-gray-800">{{ employee.codeEmployee }}</td>
+          <td class="px-4 py-2 text-gray-600">{{ employee.name }}</td>
+          <td class="px-4 py-2 text-gray-600">{{ employee.lastName1 }}</td>
+          <td class="px-4 py-2 text-gray-600">{{ employee.lastName2 }}</td>
+          <td class="px-4 py-2 text-gray-600">
+            {{ employee.codeDepartment.nameDepartment }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <ng-template #noEmployees>
     <p class="text-white italic">There are no Employees.</p>
