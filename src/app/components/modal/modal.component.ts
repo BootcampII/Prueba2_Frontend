@@ -31,7 +31,10 @@ export class ModalComponent {
     name: '',
     lastName1: '',
     lastName2: '',
-    codeDepartment: 0,
+    codeDepartment: {
+      codeDepartment: 0,
+      nameDepartment: '',
+    },
   };
 
   constructor(

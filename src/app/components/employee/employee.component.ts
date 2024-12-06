@@ -17,6 +17,6 @@ export class EmployeeComponent {
   constructor() {
     this.employeeService
       .getEmployees()
-      .subscribe((data: Employee[]) => (this.employees = data));
+      .subscribe((data: any) => (this.employees = data.employees));
   }
 }
